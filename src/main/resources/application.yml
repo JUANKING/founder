@@ -1,0 +1,35 @@
+info:
+  build:
+    version: 0.0.1
+  name: ${name}
+
+---
+
+# Local
+spring:
+  profiles: local
+  datasource:
+    url: jdbc:impala://impala.dev.es.wcorp.carrefour.com:21050/org_last;SSL=1;CAIssuedCertNamesMismatch=1;SSLTrustStore=/data/truststore.jks;SSLTrustStorePwd=changeit;AuthMech=3;
+    username: j3251546
+    password: Stratio5
+    driver-class-name: com.cloudera.impala.jdbc41.Driver
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      springframework:
+        jdbc:
+          core:
+            JdbcTemplate: debug
+
+# Para habilitar Swagger a través de Zuul
+swagger:
+  externalHostName: localhost:8081
