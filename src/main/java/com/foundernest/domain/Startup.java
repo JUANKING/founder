@@ -1,5 +1,7 @@
 package com.foundernest.domain;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -29,6 +31,6 @@ public class Startup {
 	private Integer niceToHaceScore;
 	private Integer informative;
 	private Integer na;
-	private Criteria criteria;
+	private List<Criteria> criteria;
 	private String callToAction;
 }

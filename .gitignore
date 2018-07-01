@@ -41,3 +41,5 @@ Thumbs.db
 *.iml
 atlassian-ide-plugin.xml
 target
+
+\.settings/oracle\.eclipse\.tools\.webtier\.ui\.prefs
