@@ -2,12 +2,12 @@ package com.foundernest.controllers;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +31,17 @@ import io.swagger.annotations.ApiResponses;
 @Api(tags = { "API Investors" })
 @CrossOrigin
 public class InvestorController {
+	
+	private final InvestorRepository investorRepo;
+	private final StartupRepository startupRepo;
 
-	@Autowired
-	InvestorRepository founderRepo;
-	@Autowired
-	StartupRepository startupRepo;
+	public InvestorController(InvestorRepository investorRepo ,StartupRepository startupRepo) {
+		Assert.notNull(investorRepo, "founderRepo must not be null!");
+		Assert.notNull(startupRepo, "startupRepo must not be null!");
+		this.investorRepo = investorRepo;
+		this.startupRepo=startupRepo;
+	}
+
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "Find all founders")
@@ -44,7 +50,7 @@ public class InvestorController {
 	public ResponseEntity<Page<Investor>> findAllInvestors(
 			@ApiParam(value = "Page") @RequestParam(value = "page", required = false, defaultValue = "0" ) int page,
 			@ApiParam(value = "Size") @RequestParam(value = "size", required = false, defaultValue = "25") int size) {
-		return new ResponseEntity<Page<Investor>>(this.founderRepo.findAll(PageRequest.of(page, size)), HttpStatus.OK);
+		return new ResponseEntity<Page<Investor>>(this.investorRepo.findAll(PageRequest.of(page, size)), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -53,7 +59,7 @@ public class InvestorController {
 			@ApiResponse(code = HttpServletResponse.SC_INTERNAL_SERVER_ERROR, message = "Internal server error") })
 	public ResponseEntity<Investor> findInvestorById(
 			@ApiParam(value = "Investor Id", required = true) @PathVariable String id) {
-		return new ResponseEntity<Investor>(this.founderRepo.findById(id).get(), HttpStatus.OK);
+		return new ResponseEntity<Investor>(this.investorRepo.findById(id).get(), HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/{id}/startups", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

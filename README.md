@@ -1,6 +1,16 @@
-# spring-boot-mongodb
-This repository contains a Spring Boot example project for MongoDB.
+# Back foundernest
+This repository contains a Spring Boot application with embedmongo.
 
-For a code review of this repo, see my related [blog post](https://springframework.guru/3402-2/).
-
-You can learn more about my courses [here](http://courses.springframework.guru/courses/) on my site.
+### Features of the Project
+* Backend
+	* Undertow server
+	* API documentation and Live Try-out links with Swagger 
+	* In Memory DB with embedmongo. 
+	* Using JPA
+	* How to request and respond for paginated data
+	* Jacoco  
+	
+### Build Backend (SpringBoot Java)
+```bash
+# Maven Build : Navigate to the root folder where pom.xml is present 
+mvn clean install

@@ -1,17 +1,10 @@
 package com.foundernest;
 
-import java.util.Arrays;
-
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.foundernest.domain.Investor;
-import com.foundernest.domain.Startup;
-import com.foundernest.repositories.InvestorRepository;
-import com.foundernest.repositories.StartupRepository;
 import com.google.common.base.Predicates;
 
 import springfox.documentation.builders.PathSelectors;
@@ -23,9 +16,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableWebMvc
 @EnableSwagger2
-public class founderNestApplication {
+public class FounderNestApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(founderNestApplication.class, args);
+		SpringApplication.run(FounderNestApplication.class, args);
 	}
 
 	@Bean
